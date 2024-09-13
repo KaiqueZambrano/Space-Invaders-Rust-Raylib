@@ -1,0 +1,13 @@
+prefix=/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib64
+includedir=${prefix}/include
+
+Name: raylib
+Description: A simple and easy-to-use library to enjoy videogames programming
+URL: https://github.com/raysan5/raylib
+Version: 4.5.0
+Libs: -L"${libdir}" -lraylib 
+Libs.private: 
+Requires.private: 
+Cflags: -I"${includedir}"
