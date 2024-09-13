@@ -1,7 +1,0 @@
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/lib64/libraylib.a
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/include/raylib.h
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/include/rlgl.h
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/include/raymath.h
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/lib64/pkgconfig/raylib.pc
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/lib64/cmake/raylib/raylib-config-version.cmake
-/var/home/ktz/Projetinhos/space-invaders/target/debug/build/raylib-sys-64f252c1ff212f5d/out/lib64/cmake/raylib/raylib-config.cmake
