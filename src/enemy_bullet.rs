@@ -5,9 +5,9 @@ use crate::red::Reds;
 use crate::yellow::Yellows;
 use rand::Rng;
 
-struct EnemyBullet {
-    position: Vector2,
-    velocity: Vector2,
+pub struct EnemyBullet {
+    pub position: Vector2,
+    pub velocity: Vector2,
 }
 
 pub struct EnemyBullets {
@@ -37,7 +37,6 @@ impl EnemyBullets {
 
 
     pub fn ai(&mut self,
-              rl: &RaylibHandle,
               the_greens: &mut Greens,
               the_reds: &mut Reds,
               the_yellows: &mut Yellows) {

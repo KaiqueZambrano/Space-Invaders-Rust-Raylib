@@ -2,9 +2,9 @@ use raylib::prelude::*;
 use crate::Object;
 use crate::player::Spaceship;
 
-struct Bullet {
-    position: Vector2,
-    velocity: Vector2,
+pub struct Bullet {
+    pub position: Vector2,
+    pub velocity: Vector2,
 }
 
 pub struct Bullets {

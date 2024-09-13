@@ -7,6 +7,7 @@ pub struct Spaceship {
     pub texture: Texture2D,
     pub last_shot_time: f64,
     pub fire_rate: f64,
+    pub life: i32,
 }
 
 impl Spaceship {
@@ -23,6 +24,7 @@ impl Spaceship {
             texture,
             last_shot_time: 0.0,
             fire_rate: 0.5,
+            life: 3,
         }
     }
 
@@ -37,6 +39,12 @@ impl Spaceship {
         }
         else {
             self.velocity.x = 0.0;
+        }
+    }
+
+    pub fn is_gameover(&self) {
+        if self.life == 0 {
+            std::process::exit(0);
         }
     }
 }

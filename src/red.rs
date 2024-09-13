@@ -30,6 +30,15 @@ impl Reds {
         };
         self.reds.push(red);
     }
+
+    pub fn check_side(&self) -> bool {
+        for red in &self.reds {
+            if red.position.x > 760.0 || red.position.x < 0.0 {
+                return true;
+            }   
+        }
+        false
+    }
 }
 
 impl Object for Reds {
@@ -40,22 +49,9 @@ impl Object for Reds {
     }
 
     fn update(&mut self) {
-        let mut switchSide = false;
-
         for red in &mut self.reds {
             red.position.x += red.velocity.x;
             red.position.y += red.velocity.y;
-
-            if red.position.x > 760.0 || red.position.x < 0.0 {
-                switchSide = true;
-            }
-        }
-
-        if switchSide {
-            for red in &mut self.reds {
-                red.velocity.x = -red.velocity.x;
-                red.position.y += 30.0;
-            }
         }
     }
 }

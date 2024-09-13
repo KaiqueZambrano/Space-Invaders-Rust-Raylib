@@ -4,6 +4,7 @@ mod green;
 mod red;
 mod yellow;
 mod enemy_bullet;
+mod collision;
 
 use raylib::prelude::*;
 use player::Spaceship;
@@ -12,6 +13,7 @@ use green::Greens;
 use red::Reds;
 use yellow::Yellows;
 use enemy_bullet::EnemyBullets;
+use collision::Collision;
 
 trait Object {
     fn draw(&self, d: &mut RaylibDrawHandle);
@@ -70,12 +72,31 @@ fn main() {
         bullets.input(&rl, &mut spaceship);
         bullets.update();
 
-        enemy_bullets.ai(&rl, &mut greens, &mut reds, &mut yellows);
+        enemy_bullets.ai(&mut greens, &mut reds, &mut yellows);
         enemy_bullets.update();
 
         greens.update();
         reds.update();
         yellows.update();
+
+        if greens.check_side() || reds.check_side() || yellows.check_side() {
+            for green in &mut greens.greens {
+                green.velocity.x = -green.velocity.x;
+                green.position.y += 30.0;
+            }
+            for red in &mut reds.reds {
+                red.velocity.x = -red.velocity.x;
+                red.position.y += 30.0;
+            }
+            for yellow in &mut yellows.yellows {
+                yellow.velocity.x = -yellow.velocity.x;
+                yellow.position.y += 30.0;
+            }
+        } 
+        
+        Collision::enemy_bullet(&mut enemy_bullets, &mut spaceship);
+        Collision::player_bullet(&mut bullets, &mut greens, &mut reds, &mut yellows);
+        spaceship.is_gameover();
 
         let mut d = rl.begin_drawing(&thread);
         d.clear_background(Color::BLACK);
