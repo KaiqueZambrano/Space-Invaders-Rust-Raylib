@@ -40,15 +40,22 @@ impl Object for Yellows {
     }
 
     fn update(&mut self) {
+        let mut switchSide = false;
+
         for yellow in &mut self.yellows {
             yellow.position.x += yellow.velocity.x;
             yellow.position.y += yellow.velocity.y;
 
             if yellow.position.x > 760.0 || yellow.position.x < 0.0 {
+                switchSide = true;
+            }
+        }
+
+        if switchSide {
+            for yellow in &mut self.yellows {
                 yellow.velocity.x = -yellow.velocity.x;
                 yellow.position.y += 30.0;
             }
         }
-
     }
 }

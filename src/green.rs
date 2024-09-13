@@ -40,15 +40,22 @@ impl Object for Greens {
     }
 
     fn update(&mut self) {
+        let mut switchSide = false;
+
         for green in &mut self.greens {
             green.position.x += green.velocity.x;
             green.position.y += green.velocity.y;
 
             if green.position.x > 760.0 || green.position.x < 0.0 {
+                switchSide = true;
+            }
+        }
+
+        if switchSide {
+            for green in &mut self.greens {
                 green.velocity.x = -green.velocity.x;
                 green.position.y += 30.0;
             }
         }
-
     }
 }

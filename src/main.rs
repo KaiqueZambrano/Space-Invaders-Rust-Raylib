@@ -31,38 +31,35 @@ fn main() {
     let mut yellows = Yellows::new(&thread, &mut rl);
     let mut enemy_bullets = EnemyBullets::new(&thread, &mut rl);
 
+    let velocity = Vector2 { x: 0.05, y: 0.0 };
+    
     for i in 0..11 {
         let x = 60.0 + (i as f32) * 60.0;
         let y = 240.0;
-        let velocity = Vector2 { x: 0.1, y: 0.0 };
         greens.add(Vector2 { x, y }, velocity);
     }
 
     for i in 0..11 {
         let x = 60.0 + (i as f32) * 60.0;
         let y = 180.0;
-        let velocity = Vector2 { x: 0.1, y: 0.0 };
         greens.add(Vector2 { x, y }, velocity);
     }
 
     for i in 0..11 {
         let x = 60.0 + (i as f32) * 60.0;
         let y = 120.0;
-        let velocity = Vector2 { x: 0.1, y: 0.0 };
         reds.add(Vector2 { x, y }, velocity);
     }
 
     for i in 0..11 {
         let x = 60.0 + (i as f32) * 60.0;
         let y = 60.0;
-        let velocity = Vector2 { x: 0.1, y: 0.0 };
         reds.add(Vector2 { x, y }, velocity);
     }
 
     for i in 0..11 {
         let x = 60.0 + (i as f32) * 60.0;
         let y = 0.0;
-        let velocity = Vector2 { x: 0.1, y: 0.0 };
         yellows.add(Vector2 { x, y }, velocity);
     }
     
