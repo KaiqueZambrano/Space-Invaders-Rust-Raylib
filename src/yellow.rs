@@ -39,6 +39,14 @@ impl Yellows {
         }
         false
     }
+
+    pub fn is_game_over(&self) {
+        for yellow in &self.yellows {
+            if yellow.position.y > 530.0 {
+                std::process::exit(0);
+            }
+        }
+    }
 }
 
 impl Object for Yellows {

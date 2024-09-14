@@ -39,6 +39,14 @@ impl Greens {
         }
         false
     }
+
+    pub fn is_game_over(&self) {
+        for green in &self.greens {
+            if green.position.y > 530.0 {
+                std::process::exit(0);
+            }
+        }
+    }
 }
 
 impl Object for Greens {

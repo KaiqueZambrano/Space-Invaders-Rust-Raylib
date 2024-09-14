@@ -65,6 +65,7 @@ impl Collision {
         the_reds: &mut Reds,
         the_yellows: &mut Yellows,
         walls: &mut Walls,
+        spaceship: &mut Spaceship,
     ) {
         the_bullets.bullets.retain(|bullet| {
             let mut hit_enemy = false;
@@ -86,6 +87,7 @@ impl Collision {
 
                 if rec1.check_collision_recs(&rec2) {
                     hit_enemy = true;
+                    spaceship.points += 1;
                     return false;
                 }
 
@@ -109,6 +111,7 @@ impl Collision {
 
                 if rec1.check_collision_recs(&rec2) {
                     hit_enemy = true;
+                    spaceship.points += 1;
                     return false;
                 }
 
@@ -132,6 +135,7 @@ impl Collision {
 
                 if rec1.check_collision_recs(&rec2) {
                     hit_enemy = true;
+                    spaceship.points += 1;
                     return false;
                 }
 

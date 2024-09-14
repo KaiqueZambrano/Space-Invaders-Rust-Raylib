@@ -39,6 +39,14 @@ impl Reds {
         }
         false
     }
+
+    pub fn is_game_over(&self) {
+        for red in &self.reds {
+            if red.position.y > 530.0 {
+                std::process::exit(0);
+            }
+        }
+    }
 }
 
 impl Object for Reds {

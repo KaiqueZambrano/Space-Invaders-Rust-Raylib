@@ -78,8 +78,17 @@ fn main() {
         } 
         
         Collision::enemy_bullet(&mut enemy_bullets, &mut spaceship, &mut walls);
-        Collision::player_bullet(&mut bullets, &mut greens, &mut reds, &mut yellows, &mut walls);
+        Collision::player_bullet(&mut bullets,
+                                 &mut greens,
+                                 &mut reds,
+                                 &mut yellows,
+                                 &mut walls,
+                                 &mut spaceship);
+
         spaceship.is_gameover();
+        greens.is_game_over();
+        reds.is_game_over();
+        yellows.is_game_over();
 
         let mut d = rl.begin_drawing(&thread);
         d.clear_background(Color::BLACK);
@@ -91,6 +100,18 @@ fn main() {
         yellows.draw(&mut d);
         enemy_bullets.draw(&mut d);
         walls.draw(&mut d);
+        d.draw_text(
+            &format!("Points: {}", spaceship.points),
+            20, 20,
+            32,
+            Color::WHITE
+        );
+        d.draw_text(
+            &format!("Life: {}", spaceship.life),
+            680, 20,
+            32,
+            Color::WHITE
+        );
     }
 }
 
