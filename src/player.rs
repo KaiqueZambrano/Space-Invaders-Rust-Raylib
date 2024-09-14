@@ -23,13 +23,13 @@ impl Spaceship {
             velocity,
             texture,
             last_shot_time: 0.0,
-            fire_rate: 0.5,
+            fire_rate: 0.3,
             life: 3,
         }
     }
 
     pub fn input(&mut self, rl: &RaylibHandle) {
-        let speed = 1.0;
+        let speed = 0.5;
 
         if rl.is_key_down(KeyboardKey::KEY_RIGHT) {
             self.velocity.x = speed;

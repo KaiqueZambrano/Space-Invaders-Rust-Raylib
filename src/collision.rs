@@ -5,17 +5,18 @@ use crate::player::Spaceship;
 use crate::green::Greens;
 use crate::red::Reds;
 use crate::yellow::Yellows;
+use crate::wall::Walls;
 
 pub struct Collision;
 
 impl Collision {
-    pub fn enemy_bullet(the_bullet: &mut EnemyBullets, player: &mut Spaceship) {
+    pub fn enemy_bullet(the_bullet: &mut EnemyBullets, player: &mut Spaceship, walls: &mut Walls) {
         the_bullet.bullets.retain(|bullet| {
             let rec1 = Rectangle {
                 x: bullet.position.x,
                 y: bullet.position.y,
-                width: the_bullet.texture.width() as f32,
-                height: the_bullet.texture.height() as f32,
+                width: the_bullet.texture.width() as f32 /2.0,
+                height: the_bullet.texture.height() as f32 /2.0,
             };
 
             let rec2 = Rectangle {
@@ -32,6 +33,30 @@ impl Collision {
 
             true
         });
+
+        for wall in &mut walls.walls {
+            let rec1 = Rectangle {
+                x: wall.position.x,
+                y: wall.position.y,
+                width: 75.0,
+                height: 15.0,
+            };
+
+            the_bullet.bullets.retain(|bullet| {
+                let rec2 = Rectangle {
+                    x: bullet.position.x,
+                    y: bullet.position.y,
+                    width: the_bullet.texture.width() as f32 /2.0,
+                    height: the_bullet.texture.height() as f32 /2.0,
+                };
+
+                if rec1.check_collision_recs(&rec2) {
+                    wall.life -= 1;
+                }
+                
+                !rec1.check_collision_recs(&rec2)
+            });
+        }
     }
 
     pub fn player_bullet(
@@ -39,6 +64,7 @@ impl Collision {
         the_greens: &mut Greens,
         the_reds: &mut Reds,
         the_yellows: &mut Yellows,
+        walls: &mut Walls,
     ) {
         the_bullets.bullets.retain(|bullet| {
             let mut hit_enemy = false;
@@ -114,5 +140,29 @@ impl Collision {
 
             !hit_enemy
         });
+
+        for wall in &mut walls.walls {
+            let rec1 = Rectangle {
+                x: wall.position.x,
+                y: wall.position.y,
+                width: 75.0,
+                height: 15.0,
+            };
+
+            the_bullets.bullets.retain(|bullet| {
+                let rec2 = Rectangle {
+                    x: bullet.position.x,
+                    y: bullet.position.y,
+                    width: the_bullets.texture.width() as f32 /2.0,
+                    height: the_bullets.texture.height() as f32 /2.0,
+                };
+
+                if rec1.check_collision_recs(&rec2) {
+                    wall.life -= 1;
+                }
+                
+                !rec1.check_collision_recs(&rec2)
+            });
+        }
     }
 }
